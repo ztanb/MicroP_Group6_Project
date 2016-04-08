@@ -114,13 +114,21 @@ typedef struct {
 /** @addtogroup SENSOR_SERVICE_Exported_Functions
  *  @{
  */
-
+///////////////////////////////////////////////////////////////
+// Our Code
 ///////////////////////////////////////////////////////////////
 tBleStatus Add_Temperature_Service(void);
 tBleStatus Add_Accelerometer_Service(void);
 tBleStatus Add_Doubletap_Service(void);
 tBleStatus Add_LEDcntrl_Service(void);
+
+tBleStatus Update_Temperature(int16_t temp);
+tBleStatus Update_Accelerometer(int16_t pitch, int16_t roll);
+tBleStatus Update_Doubletap(uint8_t dt);
+tBleStatus Update_LEDcntrl(uint8_t ledcntrl);
 ////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
 tBleStatus Add_Acc_Service(void);
 tBleStatus Acc_Update(AxesRaw_t *data);
 tBleStatus Add_Environmental_Sensor_Service(void);

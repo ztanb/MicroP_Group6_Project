@@ -46,6 +46,7 @@
 #include "debug.h"
 #include "stm32_bluenrg_ble.h"
 #include "bluenrg_utils.h"
+#include "main.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -233,9 +234,16 @@ int main(void)
   }
   
   PRINTF("SERVER: BLE Stack Initialized\n");
+	
+	///////////////////////////////////////////////////////////////
+	// Our Code
+	///////////////////////////////////////////////////////////////
   ret = Add_Temperature_Service();
 	ret = Add_Accelerometer_Service();
 	ret = Add_LEDcntrl_Service();
+	///////////////////////////////////////////////////////////////
+	///////////////////////////////////////////////////////////////
+	
 	
 	/*
   ret = Add_Acc_Service();

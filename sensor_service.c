@@ -62,10 +62,13 @@ uint16_t accServHandle, freeFallCharHandle, accCharHandle;
 uint16_t envSensServHandle, tempCharHandle, pressCharHandle, humidityCharHandle;
 
 ////////////////////////////////////////////////////////////////
+// Our Code
+////////////////////////////////////////////////////////////////
 uint16_t temperatureServHandle, temperatureCharHandle;
 uint16_t accelerometerServHandle, pitchCharHandle, rollCharHandle;
 uint16_t doubletapServHandle, doubletapCharHandle;
 uint16_t ledcntrlServHandle, ledcntrlCharHandle;
+////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
 #if NEW_SERVICES
@@ -119,23 +122,25 @@ do {\
   #define COPY_TEMP_CHAR_UUID(uuid_struct)         COPY_UUID_128(uuid_struct,0xa3,0x2e,0x55,0x20, 0xe4,0x77, 0x11,0xe2, 0xa9,0xe3, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
   #define COPY_PRESS_CHAR_UUID(uuid_struct)        COPY_UUID_128(uuid_struct,0xcd,0x20,0xc4,0x80, 0xe4,0x8b, 0x11,0xe2, 0x84,0x0b, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
   #define COPY_HUMIDITY_CHAR_UUID(uuid_struct)     COPY_UUID_128(uuid_struct,0x01,0xc5,0x0b,0x60, 0xe4,0x8c, 0x11,0xe2, 0xa0,0x73, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	#define COPY_TEMPERATURE_SERVICE_UUID(uuid_struct)	COPY_UUID_128(uuid_struct, 0x13,0x36,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-	#define COPY_TEMPERATURE_CHAR_UUID(uuid_struct)			COPY_UUID_128(uuid_struct, 0x13,0x35,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-	
-	#define COPY_ACCELEROMETER_SERVICE_UUID(uuid_struct)	COPY_UUID_128(uuid_struct, 0x12,0x36,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-	#define COPY_PITCH_CHAR_UUID(uuid_struct)							COPY_UUID_128(uuid_struct, 0x12,0x35,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-	#define COPY_ROLL_CHAR_UUID(uuid_struct)							COPY_UUID_128(uuid_struct, 0x12,0x34,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-	
-	#define COPY_DOUBLETAP_SERVICE_UUID(uuid_struct)	COPY_UUID_128(uuid_struct, 0x11,0x36,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-	#define COPY_DOUBLETAP_CHAR_UUID(uuid_struct)			COPY_UUID_128(uuid_struct, 0x11,0x35,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-	
-	#define COPY_LEDCNTRL_SERVICE_UUID(uuid_struct)		COPY_UUID_128(uuid_struct, 0x10,0x36,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-	#define COPY_LEDCNTRL_CHAR_UUID(uuid_struct)			COPY_UUID_128(uuid_struct, 0x10,0x35,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
-
-	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #endif
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Our Code 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#define COPY_TEMPERATURE_SERVICE_UUID(uuid_struct)	COPY_UUID_128(uuid_struct, 0x13,0x36,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+#define COPY_TEMPERATURE_CHAR_UUID(uuid_struct)			COPY_UUID_128(uuid_struct, 0x13,0x35,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+	
+#define COPY_ACCELEROMETER_SERVICE_UUID(uuid_struct)	COPY_UUID_128(uuid_struct, 0x12,0x36,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+#define COPY_PITCH_CHAR_UUID(uuid_struct)							COPY_UUID_128(uuid_struct, 0x12,0x35,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+#define COPY_ROLL_CHAR_UUID(uuid_struct)							COPY_UUID_128(uuid_struct, 0x12,0x34,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+	
+#define COPY_DOUBLETAP_SERVICE_UUID(uuid_struct)	COPY_UUID_128(uuid_struct, 0x11,0x36,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+#define COPY_DOUBLETAP_CHAR_UUID(uuid_struct)			COPY_UUID_128(uuid_struct, 0x11,0x35,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+	
+#define COPY_LEDCNTRL_SERVICE_UUID(uuid_struct)		COPY_UUID_128(uuid_struct, 0x10,0x36,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+#define COPY_LEDCNTRL_CHAR_UUID(uuid_struct)			COPY_UUID_128(uuid_struct, 0x10,0x35,0x6e,0x80, 0xcf,0x3a, 0x11,0xe1, 0x9a,0xb4, 0x00,0x02,0xa5,0xd5,0xc5,0x1b)
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /* Store Value into a buffer in Little Endian Format */
 #define STORE_LE_16(buf, val)    ( ((buf)[0] =  (uint8_t) (val)    ) , \
@@ -144,102 +149,257 @@ do {\
  * @}
  */
 ///////////////////////////////////////////////////////////////////////////////////////////
+// Our Code
+///////////////////////////////////////////////////////////////////////////////////////////
+
+/**
+	* @brief Adds bluetooth service for the temperature sensor and one characteristic which contains the filtered sensor data
+	* @param none
+	* @retval Determines whether operation was successful or not
+	*/
 tBleStatus Add_Temperature_Service(void)
 {
 	tBleStatus ret;
 	
 	uint8_t uuid[16];
 	
+	// Add the temperature service
 	COPY_TEMPERATURE_SERVICE_UUID(uuid);
 	ret = aci_gatt_add_serv(UUID_TYPE_128, uuid, PRIMARY_SERVICE, 7, &temperatureServHandle);
 	if(ret != BLE_STATUS_SUCCESS) goto fail;
 	
+	// Add the temperature characteristic
 	COPY_TEMPERATURE_CHAR_UUID(uuid);
 	ret = aci_gatt_add_char(temperatureServHandle, UUID_TYPE_128, uuid, 1, CHAR_PROP_READ | CHAR_PROP_NOTIFY, 
 													ATTR_PERMISSION_NONE, GATT_NOTIFY_READ_REQ_AND_WAIT_FOR_APPL_RESP, 16, 0, &temperatureCharHandle);
-	if(ret != BLE_STATUS_SUCCESS) goto fail;
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error while adding Temperature characteristic\n");
+		goto fail;
+	}
 	
 	printf("Service Temperature added. Handle 0x%04X, Temperature Charac handle: 0x%04X\n", temperatureServHandle, temperatureCharHandle);
 	return BLE_STATUS_SUCCESS;
 	
 	fail:
-	printf("Error while adding Temperature Service");
+	printf("Error while adding Temperature Service\n");
 	return BLE_STATUS_ERROR;
 }
 
+/**
+	* @brief Adds bluetooth service for the accelerometer sensor and two characteristic which contain the pitch and roll angle
+	* @param none
+	* @retval Determines whether operation was successful or not
+	*/
 tBleStatus Add_Accelerometer_Service(void)
 {
 	tBleStatus ret;
 	
 	uint8_t uuid[16];
 	
+	// Add the Accelerometer service
 	COPY_ACCELEROMETER_SERVICE_UUID(uuid);
 	ret = aci_gatt_add_serv(UUID_TYPE_128, uuid, PRIMARY_SERVICE, 7, &accelerometerServHandle);
 	if(ret != BLE_STATUS_SUCCESS) goto fail;
 	
+	// Add the Pitch characteristic
 	COPY_PITCH_CHAR_UUID(uuid);
 	ret = aci_gatt_add_char(accelerometerServHandle, UUID_TYPE_128, uuid, 1, CHAR_PROP_READ | CHAR_PROP_NOTIFY, 
 													ATTR_PERMISSION_NONE, GATT_NOTIFY_READ_REQ_AND_WAIT_FOR_APPL_RESP, 16, 0, &pitchCharHandle);
-	if(ret != BLE_STATUS_SUCCESS) goto fail;
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error while adding Pitch characteristic\n");
+		goto fail;
+	}
 	
+	// Add the Roll characteristic
 	COPY_ROLL_CHAR_UUID(uuid);
 	ret = aci_gatt_add_char(accelerometerServHandle, UUID_TYPE_128, uuid, 1, CHAR_PROP_READ | CHAR_PROP_NOTIFY, 
 													ATTR_PERMISSION_NONE, GATT_NOTIFY_READ_REQ_AND_WAIT_FOR_APPL_RESP, 16, 0, &rollCharHandle);
-	if(ret != BLE_STATUS_SUCCESS) goto fail;
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error while adding the Roll characteristic\n");
+		goto fail;
+	}
 	
 	printf("Service Accelerometer added. Handle 0x%04X, Pitch Charac handle: 0x%04X, Roll Charac handle 0x%04X\n", accelerometerServHandle, pitchCharHandle, rollCharHandle);
 	return BLE_STATUS_SUCCESS;
 	
 	fail:
-	printf("Error adding Accelerometer Service");
+	printf("Error adding Accelerometer Service\n");
 	return BLE_STATUS_ERROR;
 }
 
+/**
+	* @brief Adds bluetooth service for the doubletap function and one characteristic which will inform the the android device if a double tap has occured.
+	* @param none
+	* @retval Determines whether operation was successful or not
+	*/
 tBleStatus Add_Doubletap_Service(void)
 {
 	tBleStatus ret;
 	
 	uint8_t uuid[16];
 	
+	// Add the Doubletap service
 	COPY_DOUBLETAP_SERVICE_UUID(uuid);
 	ret = aci_gatt_add_serv(UUID_TYPE_128, uuid, PRIMARY_SERVICE, 7, &doubletapServHandle);
 	if(ret != BLE_STATUS_SUCCESS) goto fail;
 	
+	// Add the Doubletap characteristic
 	COPY_DOUBLETAP_CHAR_UUID(uuid);
 	ret = aci_gatt_add_char(doubletapServHandle, UUID_TYPE_128, uuid, 1, CHAR_PROP_NOTIFY, 
 													ATTR_PERMISSION_NONE, 0, 16, 0, &doubletapCharHandle);
-	if(ret != BLE_STATUS_SUCCESS) goto fail;
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error while addind Doubletap characteristic\n");
+		goto fail;
+	}
 	
 	printf("Service Doubletap added. Handle 0x%04X, Doubletap Charac handle: 0x%04X\n", doubletapServHandle, doubletapCharHandle);
 	return BLE_STATUS_SUCCESS;
 	
 	fail:
-	printf("Error adding Doubletap Service");
+	printf("Error adding Doubletap Service\n");
 	return BLE_STATUS_ERROR;
 }
 
+/**
+	* @brief Adds bluetooth service for the LED control and one characteristic which contains the state of the LEDs
+	* @param none
+	* @retval Determines whether operation was successful or not
+	*/
 tBleStatus Add_LEDcntrl_Service(void)
 {
 	tBleStatus ret;
 	
 	uint8_t uuid[16];
 	
+	// Add the LEDcntrl service
 	COPY_LEDCNTRL_SERVICE_UUID(uuid);
 	ret = aci_gatt_add_serv(UUID_TYPE_128, uuid, PRIMARY_SERVICE, 7, &ledcntrlServHandle);
 	if(ret != BLE_STATUS_SUCCESS) goto fail;
 	
+	// Add the LEDcntrl characteristic
 	COPY_LEDCNTRL_CHAR_UUID(uuid);
-	ret = aci_gatt_add_char(ledcntrlServHandle, UUID_TYPE_128, uuid, 1, CHAR_PROP_NOTIFY, 
-													ATTR_PERMISSION_NONE, 0, 16, 0, &ledcntrlCharHandle);
-	if(ret != BLE_STATUS_SUCCESS) goto fail;
+	ret = aci_gatt_add_char(ledcntrlServHandle, UUID_TYPE_128, uuid, 1, CHAR_PROP_READ | CHAR_PROP_NOTIFY, 
+													ATTR_PERMISSION_NONE, GATT_NOTIFY_READ_REQ_AND_WAIT_FOR_APPL_RESP, 16, 0, &ledcntrlCharHandle);
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error while adding LEDcntrl characteristic\n");
+		goto fail;
+	}
 	
 	printf("Service LEDcntrl added. Handle 0x%04X, LEDcntrl Charac handle: 0x%04X\n", ledcntrlServHandle, ledcntrlCharHandle);
 	return BLE_STATUS_SUCCESS;
 	
 	fail:
-	printf("Error adding LEDcntrl Service");
+	printf("Error adding LEDcntrl Service\n");
 	return BLE_STATUS_ERROR;
 }
+
+/**
+	* @brief Updates the temperature characteristic
+	* @param Temperature in tenths of a degree
+	* @retval Determines whether operation was successful or not
+*/
+tBleStatus Update_Temperature(int16_t temp)
+{
+	tBleStatus ret;
+	
+	// Update Temperature characteristic value
+	ret = aci_gatt_update_char_value(temperatureServHandle, temperatureCharHandle, 0, 2,(uint8_t*)&temp);
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error updating Temperature characteristic\n");
+	}
+	else
+	{
+		printf("Temperature characteristic successfully updated\n");
+	}
+	
+	return ret;
+}
+
+/**
+	* @brief Updates the Pitch and Roll characteristic 
+	* @param Pitch and Roll values in 100th of a degree
+	* @retval Determines whether operation was successful or not
+*/
+tBleStatus Update_Accelerometer(int16_t pitch, int16_t roll)
+{
+	tBleStatus ret;
+	
+	// Update Pitch Characteristic
+	ret = aci_gatt_update_char_value(accelerometerServHandle, pitchCharHandle, 0, 2, (uint8_t*)&pitch);
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error updating Pitch characteristic\n");
+	}
+	else
+	{
+		printf("Pitch characteristic successfully updated\n");
+	}
+	
+	// Update Roll Characteristic
+	ret = aci_gatt_update_char_value(accelerometerServHandle, rollCharHandle, 0, 2, (uint8_t*)&roll);
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error updating Roll characteristic\n");
+	}
+	else
+	{
+		printf("Roll characteristic successfully updated\n");
+	}
+	
+	return ret;
+}
+
+/**
+	* @brief Updates the doubletap charateristic
+	* @param Value determines whether doubletap has occured
+	* @retval Determines whether operation was successful or not
+*/
+tBleStatus Update_Doubletap(uint8_t dt)
+{
+	tBleStatus ret;
+	
+	// Update Doubletap Characteristic
+	ret = aci_gatt_update_char_value(doubletapServHandle, doubletapCharHandle, 0, 1, &dt);
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error updating Doubletap characteristic\n");
+	}
+	else
+	{
+		printf("Doubletap characteristic successfully updated\n");
+	}
+	
+	return ret;
+}
+/**
+	* @brief Updates the LEDcntrl characteristic
+	* @param Control value which determines LED flashing pattern
+	* @retval Determines whether operation was successful or not
+*/
+tBleStatus Update_LEDcntrl(uint8_t ledcntrl)
+{
+	tBleStatus ret;
+	
+	// Update LEDcntrl characteristic
+	ret = aci_gatt_update_char_value(ledcntrlServHandle, ledcntrlCharHandle, 0, 1, &ledcntrl);
+	if(ret != BLE_STATUS_SUCCESS)
+	{
+		printf("Error updating LEDcntrl characteristic\n");
+	}
+	else
+	{
+		printf("LEDcntrl characteristic successfully updated\n");
+	}
+	
+	return ret;
+}
+///////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 /** @defgroup SENSOR_SERVICE_Exported_Functions 
