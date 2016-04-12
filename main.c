@@ -83,6 +83,16 @@ extern volatile uint8_t set_connectable;
 extern volatile int connected;
 extern AxesRaw_t axes_data;
 uint8_t bnrg_expansion_board = IDB04A1; /* at startup, suppose the X-NUCLEO-IDB04A1 is used */
+
+///////////////////////////////////////////////////////////////
+// Our Code
+///////////////////////////////////////////////////////////////
+extern int16_t AccPitch;
+extern int16_t AccRoll;
+extern int16_t Temperature;
+extern uint8_t LEDControl;
+extern uint8_t DoubleTap;
+
 /**
  * @}
  */
@@ -91,7 +101,7 @@ uint8_t bnrg_expansion_board = IDB04A1; /* at startup, suppose the X-NUCLEO-IDB0
  * @{
  */
 /* Private function prototypes -----------------------------------------------*/
-void User_Process(AxesRaw_t* p_axes);
+void User_Process(void);
 /**
  * @}
  */
@@ -121,7 +131,7 @@ void User_Process(AxesRaw_t* p_axes);
  */
 int main(void)
 {
-  const char *name = "BlueNRG";
+  const char *name = "Group6";
   uint8_t SERVER_BDADDR[] = {0x12, 0x34, 0x00, 0xE1, 0x80, 0x02}; // Had to change BDADDR due to conflicts with other boards
   uint8_t bdaddr[BDADDR_SIZE];
   uint16_t service_handle, dev_name_char_handle, appearance_char_handle;
@@ -240,48 +250,12 @@ int main(void)
 	///////////////////////////////////////////////////////////////
   ret = Add_Temperature_Service();
 	ret = Add_Accelerometer_Service();
+	ret = Add_Doubletap_Service();
 	ret = Add_LEDcntrl_Service();
+	
 	///////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////
 	
-	
-	/*
-  ret = Add_Acc_Service();
-  
-  if(ret == BLE_STATUS_SUCCESS)
-    PRINTF("Acc service added successfully.\n");
-  else
-    PRINTF("Error while adding Acc service.\n");
-  
-  ret = Add_Environmental_Sensor_Service();
-  
-  if(ret == BLE_STATUS_SUCCESS)
-    PRINTF("Environmental Sensor service added successfully.\n");
-  else
-    PRINTF("Error while adding Environmental Sensor service.\n");
-*/
-#if NEW_SERVICES
-  /* Instantiate Timer Service with two characteristics:
-   * - seconds characteristic (Readable only)
-   * - minutes characteristics (Readable and Notifiable )
-   */
-  ret = Add_Time_Service(); 
-  
-  if(ret == BLE_STATUS_SUCCESS)
-    PRINTF("Time service added successfully.\n");
-  else
-    PRINTF("Error while adding Time service.\n");  
-  
-  /* Instantiate LED Button Service with one characteristic:
-   * - LED characteristic (Readable and Writable)
-   */  
-  ret = Add_LED_Service();
-
-  if(ret == BLE_STATUS_SUCCESS)
-    PRINTF("LED service added successfully.\n");
-  else
-    PRINTF("Error while adding LED service.\n");  
-#endif
 
   /* Set output power level */
   ret = aci_hal_set_tx_power_level(1,4);
@@ -289,10 +263,7 @@ int main(void)
   while(1)
   {
     HCI_Process();
-    User_Process(&axes_data);
-#if NEW_SERVICES
-    Update_Time_Characteristics();
-#endif
+    User_Process();
   }
 }
 
@@ -303,7 +274,7 @@ int main(void)
  * @param  AxesRaw_t* p_axes
  * @retval None
  */
-void User_Process(AxesRaw_t* p_axes)
+void User_Process()
 {
   if(set_connectable){
     setConnectable();
@@ -319,12 +290,28 @@ void User_Process(AxesRaw_t* p_axes)
     
     if(connected)
     {
-      /* Update acceleration data */
-      p_axes->AXIS_X += 1;
-      p_axes->AXIS_Y -= 1;
-      p_axes->AXIS_Z += 2;
-      //PRINTF("ACC: X=%6d Y=%6d Z=%6d\r\n", p_axes->AXIS_X, p_axes->AXIS_Y, p_axes->AXIS_Z);
-      Acc_Update(p_axes);
+			//Test Program
+			Temperature++;
+			Update_Temperature(Temperature);
+			AccPitch++;
+			Update_Pitch(AccPitch);
+			AccRoll++;
+			Update_Roll(AccRoll);
+			if(DoubleTap == 0){
+				DoubleTap = 1;
+			}
+			else{
+				DoubleTap = 0;
+			}
+			Update_Doubletap(DoubleTap);
+			if(LEDControl <= 4){
+				LEDControl ++;
+			}
+			else{
+				LEDControl = 0;
+			}
+			Update_LEDcntrl(LEDControl);
+
     }
   }
 }

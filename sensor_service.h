@@ -59,6 +59,8 @@
 #include "hal.h"
 #include "sm.h"
 #include "debug.h"
+	 
+#include "main.h"
 
 #include <stdlib.h>
 
@@ -123,31 +125,20 @@ tBleStatus Add_Doubletap_Service(void);
 tBleStatus Add_LEDcntrl_Service(void);
 
 tBleStatus Update_Temperature(int16_t temp);
-tBleStatus Update_Accelerometer(int16_t pitch, int16_t roll);
+tBleStatus Update_Pitch(int16_t pitch);
+tBleStatus Update_Roll(int16_t roll);
 tBleStatus Update_Doubletap(uint8_t dt);
 tBleStatus Update_LEDcntrl(uint8_t ledcntrl);
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-tBleStatus Add_Acc_Service(void);
-tBleStatus Acc_Update(AxesRaw_t *data);
-tBleStatus Add_Environmental_Sensor_Service(void);
 void       setConnectable(void);
 void       enableNotification(void);
 void       GAP_ConnectionComplete_CB(uint8_t addr[6], uint16_t handle);
 void       GAP_DisconnectionComplete_CB(void);
 void       HCI_Event_CB(void *pckt);
 
-#if NEW_SERVICES
-  tBleStatus Add_Time_Service(void);
-  tBleStatus Seconds_Update(void);
-  tBleStatus Minutes_Notify(void);
-  void       Update_Time_Characteristics(void);
 
-  tBleStatus Add_LED_Service(void);
-  void       Attribute_Modified_CB(uint16_t handle, uint8_t data_length,
-                                   uint8_t *att_data);
-#endif
 /**
  * @}
  */
